@@ -9,7 +9,8 @@ module.exports = {
       type: Sequelize.INTEGER,
     },
     shorturl: {
-      type: Sequelize.STRING,
+      type: Sequelize.STRING(6),
+      allowNull: false,
       unique: true,
     },
     longurl: {

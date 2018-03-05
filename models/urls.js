@@ -1,12 +1,13 @@
-
-
 module.exports = (sequelize, DataTypes) => {
   const urls = sequelize.define('urls', {
-    shorturl: DataTypes.STRING,
+    shorturl: {
+      type: DataTypes.STRING(6),
+    },
     longurl: DataTypes.STRING,
   }, {});
-  urls.associate = function (models) {
-    // associations can be defined here
-  };
+  urls.createObject = (longurl, shorturl) => (urls.findOrCreate({
+    where: { shorturl },
+    defaults: { longurl },
+  }));
   return urls;
 };

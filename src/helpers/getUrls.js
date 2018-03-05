@@ -12,16 +12,22 @@ const getLongURLs = () => {
 const getShortURLs = (longURLs) => {
   const maintainExclusive = new Set();
   const urlPair = [];
-  for (let i = 0; i < longURLs.length; i += 1) {
-    const shortURL = crypto.createHash('md5').update(longURLs[i]).digest('hex').slice(0, 6);
-    if (!maintainExclusive.has(shortURL)) {
-      maintainExclusive.add(shortURL);
-      urlPair.push({
-        shorturl: shortURL,
-        longurl: longURLs[i],
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      });
+  for (let i = 0; i < 10; i += 1) {
+    let j = 0;
+    while (true) {
+      const shortURL = crypto.createHash('md5').update(longURLs[i]).digest('hex').slice(j, j + 5);
+      if (!maintainExclusive.has(shortURL)) {
+        maintainExclusive.add(shortURL);
+        urlPair.push({
+          shorturl: shortURL,
+          longurl: longURLs[i],
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        });
+        break;
+      } else {
+        j += 6;
+      }
     }
   }
   return urlPair;
