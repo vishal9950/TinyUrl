@@ -7,4 +7,11 @@ describe('Test server \'/\': ', () => {
             done();
         })
     })
+
+    test('Should return reslut \'Working!\': ', (done) => {
+        Server.inject('/', (response) => {
+            expect(response.result).toBe('Working!');
+            done();
+        })
+    })
 })
