@@ -3,7 +3,7 @@ const handler = (request, reply) => {
 };
 
 module.exports = {
-  path: '/',
+  path: '/ping',
   method: 'GET',
   handler,
 };
