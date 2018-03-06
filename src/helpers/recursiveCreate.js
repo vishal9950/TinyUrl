@@ -20,7 +20,7 @@ async function recursiveCreate(longurl, shorturlHash, start, size) {
   console.log('***************************');
   console.log('Collision');
   console.log('***************************');
-  return recursiveCreate(longurl, shorturlHash, start + 6, size);
+  return recursiveCreate(longurl, shorturlHash, start + 1, size);
 }
 
 module.exports = recursiveCreate;

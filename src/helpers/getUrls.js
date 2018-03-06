@@ -1,4 +1,4 @@
-const crypto = require('crypto');
+const getHash = require('../helpers/getHash');
 
 const getLongURLs = () => {
   const longURLs = [];
@@ -15,7 +15,7 @@ const getShortURLs = (longURLs) => {
   for (let i = 0; i < longURLs.length; i += 1) {
     let j = 0;
     while (true) {
-      const shortURL = crypto.createHash('md5').update(longURLs[i]).digest('hex').slice(j, j + 6);
+      const shortURL = getHash(longURLs[i]).slice(j, j + 6);
       if (!maintainExclusive.has(shortURL)) {
         maintainExclusive.add(shortURL);
         urlPair.push({
@@ -26,7 +26,7 @@ const getShortURLs = (longURLs) => {
         });
         break;
       } else {
-        j += 6;
+        j += 1;
       }
     }
   }
