@@ -2,7 +2,7 @@ const urlPair = require('../src/helpers/getUrls');
 const Models = require('../models');
 
 module.exports = {
-  up: (queryInterface, Sequelize) => Models.urls.bulkCreate(urlPair, {}),
+  up: (queryInterface, Sequelize) => queryInterface.bulkInsert('urls', urlPair, {}),
 
-  down: (queryInterface, Sequelize) => Models.urls.destroy({ truncate: true }),
+  down: (queryInterface, Sequelize) => queryInterface.bulkDelete('urls'),
 };
