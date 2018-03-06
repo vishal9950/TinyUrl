@@ -15,7 +15,7 @@ const getShortURLs = (longURLs) => {
   for (let i = 0; i < 10; i += 1) {
     let j = 0;
     while (true) {
-      const shortURL = crypto.createHash('md5').update(longURLs[i]).digest('hex').slice(j, j + 5);
+      const shortURL = crypto.createHash('md5').update(longURLs[i]).digest('hex').slice(j, j + 6);
       if (!maintainExclusive.has(shortURL)) {
         maintainExclusive.add(shortURL);
         urlPair.push({
