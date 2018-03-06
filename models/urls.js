@@ -9,9 +9,5 @@ module.exports = (sequelize, DataTypes) => {
     },
     longurl: DataTypes.STRING,
   }, {});
-  urls.createObject = (longurl, shorturl) => (urls.findOrCreate({
-    where: { shorturl },
-    defaults: { longurl },
-  }));
   return urls;
 };
