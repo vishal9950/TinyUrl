@@ -12,8 +12,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "good": "7",
+    "good-console": "6",
+    "good-squeeze": "5",
     "hapi": "^16.6.3",
     "pg": "^7.4.1",
+    "pm2": "^2.10.1",
     "sequelize": "^4.35.2",
     "sequelize-cli": "^4.0.0"
   },
