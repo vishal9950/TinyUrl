@@ -1,8 +1,16 @@
 const urlPair = require('../src/helpers/getUrls');
-const Models = require('../models');
+const redis = require('redis');
 
 module.exports = {
-  up: (queryInterface, Sequelize) => queryInterface.bulkInsert('urls', urlPair, {}),
+  up: (queryInterface, Sequelize) => {
+    const client = redis.createClient();
+    client.on('connection', () => {
+      console.log('Connected');
+    });
+    urlPair.map(url => client.hset(['url', url.longurl, url.shorturl], redis.print));
+    client.quit();
+    return queryInterface.bulkInsert('urls', urlPair, {});
+  },
 
   down: (queryInterface, Sequelize) => queryInterface.bulkDelete('urls'),
 };
