@@ -1,7 +1,7 @@
 const Models = require('../../models');
 
 async function recursiveCreate(longurl, shorturlHash, start, size) {
-  const shorturl = shorturlHash.substr(start, start + size);
+  const shorturl = shorturlHash.slice(start, start + size);
   console.log('shortUrlHash: ', shorturl);
   const response = await Models.urls.find({
     where: {

@@ -27,13 +27,13 @@ describe('Test function recursiveCreate: ', () => {
     console.log(result);
     result.then((value) => {
       console.log(value);
-      expect(value).toBe(hash.substr(0, 6));
+      expect(value).toBe(hash.slice(0, 6));
       const result2 = recursiveCreate(longUrl2, hash, 0, 6);
       console.log(result2);
       result2.then((value1) => {
         console.log(value1);
-        console.log(hash.substr(6, 12));
-        expect(value1).toBe(hash.substr(6, 12));
+        console.log(hash.slice(1, 7));
+        expect(value1).toBe(hash.slice(1, 7));
         done();
       });
     });
