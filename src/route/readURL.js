@@ -1,16 +1,33 @@
 const Models = require('../../models');
+const redis = require('redis');
+
+const client = redis.createClient();
+
+// const quitRedis = client => client.quit();
 
 const handler = (request, reply) => {
-  Models.urls.find({
-    where: {
-      shorturl: request.params.shorturl,
-    },
-    attributes: ['longurl'],
-  }).then((url) => {
-    if (url !== null) {
-      reply(url);
+  console.log(request.params.shorturl);
+  client.hget('url', request.params.shorturl, (err, longurl) => {
+    if (err) {
+      throw err;
+    } else if (longurl === null) {
+      Models.urls.find({
+        where: {
+          shorturl: request.params.shorturl,
+        },
+        attributes: ['longurl'],
+      }).then((url) => {
+        if (url !== null) {
+          client.hset('url', request.params.shorturl, url.dataValues.longurl);
+          // quitRedis(client);
+          reply(url.dataValues.longurl);
+        } else {
+          reply('Invalid URL!');
+        }
+      });
     } else {
-      reply('Invalid URL!');
+      // quitRedis(client);
+      reply(longurl);
     }
   });
 };
