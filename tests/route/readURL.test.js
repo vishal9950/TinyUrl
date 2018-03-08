@@ -7,5 +7,12 @@ describe('Test GET /read: ', () => {
       done();
     });
   });
+
+  test('Should return result \'http://somerandomurl7\': ', (done) => {
+    Server.inject('/read/z+drZ+', (response) => {
+      expect(response.result).toBe('http://somerandomurl7');
+      done();
+    });
+  });
 });
 
