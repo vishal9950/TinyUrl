@@ -1,11 +1,12 @@
 const recursiveCreate = require('../../src/helpers/recursiveCreate');
-const Models = require('../../models');
+// const Models = require('../../models');
 // const getHash = require('../../src/helpers/getHash');
 const crypto = require('crypto');
 
 describe('Test function recursiveCreate: ', () => {
   beforeEach((done) => {
-    Models.urls.destroy({ truncate: true }).then(done);
+    // Models.urls.destroy({ truncate: true }).then(done);
+    done();
   });
   test('Should return the shorturl for new url: ', () => {
     const longUrl1 = 'http://newurl6';
