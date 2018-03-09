@@ -20,11 +20,11 @@ describe('Test GET /read: ', () => {
 
   test('Should store a shorturl in redis cache if not there already: ', (done) => {
     // const shorturl = 'olrtX1';
-    Server.inject('/read/olrtX1', () => {
-      client.hget('url', 'olrtX1', (err, longurl) => {
+    Server.inject('/read/Ib6Hth', () => {
+      client.hget('url', 'Ib6Hth', (err, longurl) => {
         console.log('LONGURL: ', longurl);
-        expect(longurl).toBe('http://somerandomurl999996');
-        client.hdel('url', 'olrtX1', () => {
+        expect(longurl).toBe('http://somerandomurl32');
+        client.hdel('url', 'Ib6Hth', () => {
           done();
         });
       });
