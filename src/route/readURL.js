@@ -6,7 +6,7 @@ const client = redis.createClient();
 // const quitRedis = client => client.quit();
 
 const handler = (request, reply) => {
-  console.log(request.params.shorturl);
+  // console.log(request.params.shorturl);
   client.hget('url', request.params.shorturl, (err, longurl) => {
     if (err) {
       throw err;
