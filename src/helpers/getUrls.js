@@ -26,6 +26,7 @@ const getShortURLs = (longURLs) => {
         });
         break;
       } else {
+        console.log('*********COLLISION*********');
         j += 1;
       }
     }
